@@ -9,7 +9,7 @@ A simple Tic Tac Toe game implemented with HTML, CSS, and JavaScript. Play again
 - Responsive design
 
 ## How to Play
-1. Open `index.html` in a web browser.
+1. Click on  `https://dtic-tac-toe.netlify.app/` or copy paste the link in a web browser.
 2. Players take turns clicking on empty cells.
 3. The game announces the winner or a draw when the board is full.
 
