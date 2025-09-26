@@ -1,65 +1,139 @@
-*{
-    margin: 0;
-    padding: 0;
+/* ====== Global Reset & Fonts ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-body{
-    background-color: #548587;
-    text-align: center;
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* deep teal/blue gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+main {
+  text-align: center;
 }
-.game{
-    height: 60vmin;
-    width: 60vmin;
-    display: flex ;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: #ffe600; /* bright yellow for title */
+  text-shadow: 2px 2px 15px rgba(255, 230, 0, 0.5);
 }
-.box{
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 0 1rem rgba(0,0,0,0.4);
-    font-size: 8vmin;
-    color: #b0413e;
-    background-color: #ffffc7;
+
+/* ====== Game Board ====== */
+.container {
+  display: flex;
+  justify-content: center;
 }
-#reset{
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color:#191913 ;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
-    margin-top: 1rem;
-    
+
+.game {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  grid-template-rows: repeat(3, 110px);
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 18px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
-#newButton{
-     padding: 1rem;
-    font-size: 1.25rem;
-    background-color:#191913 ;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
-    margin-top: 1rem;
+
+.box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #eee; /* default color before marking */
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
-#message{
-    color:#ffffc7;
-    font-size: 5vmin;
+
+.box:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
-.msg-container{
-    height: 30vmin;
+
+/* ====== Distinct X & O Colors ====== */
+.box.x {
+  color: #ff4fa3; /* Neon Pink for X */
+  text-shadow: 0 0 12px rgba(255, 79, 163, 0.7);
 }
-.hide {
-    display: none;
+
+.box.o {
+  color: #00e6ff; /* Neon Cyan for O */
+  text-shadow: 0 0 12px rgba(0, 230, 255, 0.7);
+}
+
+/* ====== Buttons ====== */
+button#reset,
+button#newButton {
+  margin-top: 2rem;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6b6b, #ff3cac); /* pink-magenta gradient */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button#reset:hover,
+button#newButton:hover {
+  background: linear-gradient(135deg, #ff8585, #ff4fa3);
+  box-shadow: 0 0 18px rgba(255, 107, 107, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ====== Winner / Message Popup ====== */
+.msg-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+.msg-container.hide {
+  display: none;
+}
+
+.msg-container p {
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  color: #00ff9f; /* Neon green winner text */
+  text-shadow: 0 0 14px rgba(0, 255, 159, 0.6);
+  text-align: center;
+}
+
+#newButton {
+  margin-top: 0;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 550px) {
+  .game {
+    grid-template-columns: repeat(3, 85px);
+    grid-template-rows: repeat(3, 85px);
+    gap: 10px;
+  }
+
+  .box {
+    font-size: 2.2rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
 }
